@@ -25,6 +25,7 @@ class Home extends StatefulWidget{
 
 }
 
+// ignore: camel_case_types
 class _myHomeState extends State<Home>{
   final titleController = TextEditingController();
   final passwordController = TextEditingController();
@@ -59,6 +60,12 @@ class _myHomeState extends State<Home>{
         child: Center(
             child: Column(
               children: [
+                Image.asset('assets/logo.png',
+                  height: 100,
+                  scale: 2.5,
+                  opacity:
+                      const AlwaysStoppedAnimation<double>(9)
+                ),
                 Text("Login", style: TextStyle(
                   color: Colors.black,
                   fontSize: 25,
