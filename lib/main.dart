@@ -55,81 +55,84 @@ class _myHomeState extends State<Home>{
         ),
         ),
       ),
-      body: Container(
-        margin: EdgeInsets.all(16),
-        child: Center(
-            child: Column(
-              children: [
-                Image.asset('assets/logo.png',
-                  height: 100,
-                  scale: 2.5,
-                  opacity:
-                      const AlwaysStoppedAnimation<double>(9)
-                ),
-                Text("Login", style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 25,
-                ),),
-
-                Padding(padding: EdgeInsets.all(16),
-                  child: TextField(
-                    
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Enter your username'
-                    ),
-                    controller: titleController,
-                ),
-                ),
-
-                Padding(padding: EdgeInsets.all(16),
-                  child: TextField(
-                    obscureText: true,  
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Enter your password'
-                    ),
-                    controller: passwordController,
-
-                ),
-                ),
-
-                Padding(padding: EdgeInsets.all(16),
-                  child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red.shade900,
-                        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                        textStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold)),
-                        onPressed: ()
-                        {
-
-                          //_setText();
-                          //_setPassword();
-                          Navigator.push(context, 
-                          MaterialPageRoute(builder: (context) => AboutPage(text: titleController.text,password:passwordController.text))
-                          );
-
-                      }, child: Text('Sign In', style: TextStyle(
-                        color: Colors.white,
-                      ),)),
-                ),
-
-                Padding(padding: EdgeInsets.all(16),
-                  child: Text('Forgot password?'),
-                ),
-
-                Padding(padding: EdgeInsets.all(16),
-                  child: Text(text),
-                ),
-
-                Padding(padding: EdgeInsets.all(16),
-                  child: Text(password),
-                ),
-
-              ],
-            ),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.all(16),
+          child: Center(
+              child: Column(
+                children: [
+                  Image.network('https://sugunafoods.com/wp-content/uploads/2022/09/Suguna-Foods-Brand-Logo.png'),
+                  Image.asset('assets/logo.png',
+                    height: 100,
+                    scale: 2.5,
+                    opacity:
+                        const AlwaysStoppedAnimation<double>(9)
+                  ),
+                  Text("Login", style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 25,
+                  ),),
+        
+                  Padding(padding: EdgeInsets.all(16),
+                    child: TextField(
+                      
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Enter your username'
+                      ),
+                      controller: titleController,
+                  ),
+                  ),
+        
+                  Padding(padding: EdgeInsets.all(16),
+                    child: TextField(
+                      obscureText: true,  
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Enter your password'
+                      ),
+                      controller: passwordController,
+        
+                  ),
+                  ),
+        
+                  Padding(padding: EdgeInsets.all(16),
+                    child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red.shade900,
+                          padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                          textStyle: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold)),
+                          onPressed: ()
+                          {
+        
+                            //_setText();
+                            //_setPassword();
+                            Navigator.push(context, 
+                            MaterialPageRoute(builder: (context) => AboutPage(text: titleController.text,password:passwordController.text))
+                            );
+        
+                        }, child: Text('Sign In', style: TextStyle(
+                          color: Colors.white,
+                        ),)),
+                  ),
+        
+                  Padding(padding: EdgeInsets.all(16),
+                    child: Text('Forgot password?'),
+                  ),
+        
+                  Padding(padding: EdgeInsets.all(16),
+                    child: Text(text),
+                  ),
+        
+                  Padding(padding: EdgeInsets.all(16),
+                    child: Text(password),
+                  ),
+        
+                ],
+              ),
+          ),
         ),
       ),
     );
