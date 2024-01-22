@@ -98,11 +98,11 @@ class _myHomeState extends State<Home>{
                         onPressed: ()
                         {
 
-                          _setText();
-                          _setPassword();
-                          // Navigator.push(context, 
-                          // MaterialPageRoute(builder: (context) => AboutPage())
-                          // );
+                          //_setText();
+                          //_setPassword();
+                          Navigator.push(context, 
+                          MaterialPageRoute(builder: (context) => AboutPage(text: titleController.text,password:passwordController.text))
+                          );
 
                       }, child: Text('Sign In', style: TextStyle(
                         color: Colors.white,
@@ -280,7 +280,7 @@ class MyHomePage extends StatelessWidget{
                         {
                           
                           Navigator.push(context, 
-                          MaterialPageRoute(builder: (context) => AboutPage())
+                          MaterialPageRoute(builder: (context) => AboutPage(text: "Testing",password: "Testing"))
                           );
 
                       }, child: Text('Sign In', style: TextStyle(
@@ -302,6 +302,9 @@ class MyHomePage extends StatelessWidget{
 }
 
 class AboutPage extends StatelessWidget{
+  late final String text;
+  late final String password;
+  AboutPage({super.key,required this.text,required this.password});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -320,7 +323,7 @@ class AboutPage extends StatelessWidget{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('About Page'),
+            Text("$text-$password"),
             TextButton(onPressed: (){
               Navigator.push(context, 
                 MaterialPageRoute(builder: (context) => ContactPage())
