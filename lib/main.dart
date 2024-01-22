@@ -10,9 +10,219 @@ class MyApp extends StatelessWidget{
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Suguna Demo Flutter App',
-      home: MyHomePage(),
+      home: Home(),
     );
   }
+
+}
+
+class Home extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    //return _HomeState();
+    return _myHomeState();
+  }
+
+}
+
+class _myHomeState extends State<Home>{
+  final titleController = TextEditingController();
+  final passwordController = TextEditingController();
+  String text = "No text is available";
+  String password = "No password is available";
+
+  void _setText(){
+    setState(() {
+        text = titleController.text;
+    });
+  }
+
+  void _setPassword(){
+    setState(() {
+        password = passwordController.text;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+      return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.red.shade900,
+        title: Text('Suguna Demo app',
+        style: TextStyle(
+          color: Colors.white
+        ),
+        ),
+      ),
+      body: Container(
+        margin: EdgeInsets.all(16),
+        child: Center(
+            child: Column(
+              children: [
+                Text("Login", style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 25,
+                ),),
+
+                Padding(padding: EdgeInsets.all(16),
+                  child: TextField(
+                    
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter your username'
+                    ),
+                    controller: titleController,
+                ),
+                ),
+
+                Padding(padding: EdgeInsets.all(16),
+                  child: TextField(
+                    obscureText: true,  
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter your password'
+                    ),
+                    controller: passwordController,
+
+                ),
+                ),
+
+                Padding(padding: EdgeInsets.all(16),
+                  child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red.shade900,
+                        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                        textStyle: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold)),
+                        onPressed: ()
+                        {
+
+                          _setText();
+                          _setPassword();
+                          // Navigator.push(context, 
+                          // MaterialPageRoute(builder: (context) => AboutPage())
+                          // );
+
+                      }, child: Text('Sign In', style: TextStyle(
+                        color: Colors.white,
+                      ),)),
+                ),
+
+                Padding(padding: EdgeInsets.all(16),
+                  child: Text('Forgot password?'),
+                ),
+
+                Padding(padding: EdgeInsets.all(16),
+                  child: Text(text),
+                ),
+
+                Padding(padding: EdgeInsets.all(16),
+                  child: Text(password),
+                ),
+
+              ],
+            ),
+        ),
+      ),
+    );
+  }
+  
+}
+
+/**
+ * One way to use state
+ */
+class _HomeState extends State<Home>{
+
+  late String title;
+  String text = "No text is available";
+
+  void _setText(){
+    setState(() {
+        text = title;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+      return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.red.shade900,
+        title: Text('Suguna Demo app',
+        style: TextStyle(
+          color: Colors.white
+        ),
+        ),
+      ),
+      body: Container(
+        margin: EdgeInsets.all(16),
+        child: Center(
+            child: Column(
+              children: [
+                Text("Login", style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 25,
+                ),),
+
+                Padding(padding: EdgeInsets.all(16),
+                  child: TextField(
+                    
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter your username'
+                    ),
+                    onChanged: (value) => title = value,
+                ),
+                ),
+
+                Padding(padding: EdgeInsets.all(16),
+                  child: TextField(
+                    obscureText: true,  
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter your password'
+                    ),
+                ),
+                ),
+
+                Padding(padding: EdgeInsets.all(16),
+                  child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red.shade900,
+                        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                        textStyle: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold)),
+                        onPressed: ()
+                        {
+
+                          _setText();
+                          
+                          // Navigator.push(context, 
+                          // MaterialPageRoute(builder: (context) => AboutPage())
+                          // );
+
+                      }, child: Text('Sign In', style: TextStyle(
+                        color: Colors.white,
+                      ),)),
+                ),
+
+                Padding(padding: EdgeInsets.all(16),
+                  child: Text('Forgot password?'),
+                ),
+
+                Padding(padding: EdgeInsets.all(16),
+                  child: Text(text),
+                ),
+
+              ],
+            ),
+        ),
+      ),
+    );
+  }
+  
 
 }
 
