@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -28,7 +27,13 @@ class HomeState extends StatefulWidget{
 class _MyHomeDrawer extends State<HomeState>
 {
 
-  String selectedPage = '';
+  late bool _loading;  
+
+  @override
+  void initState() {
+    super.initState();
+    _loading = false;
+  }
 
     @override
   Widget build(BuildContext context) {
@@ -41,57 +46,25 @@ class _MyHomeDrawer extends State<HomeState>
           )),
           backgroundColor: Colors.blue.shade900,
         ),
-
-        drawer: Drawer(
-          child: ListView(
-            children: [
-
-              // User Accounts Header
-              const UserAccountsDrawerHeader(accountName: Text('Manibharathi'), 
-              accountEmail: Text('manibharathir@sugunafoods.com'),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Text("M",
-                style: TextStyle(fontSize: 40.0),
-                ),
-              ),
-              ),
-              // Normal Header
-              // const DrawerHeader(
-              //   decoration: BoxDecoration(
-              //     color: Colors.lightBlueAccent
-              //   ),
-              //   child: Text('SFPL')
-
-              //   ),
-                ListTile(
-                  title: const Text('Home'),
-                  leading: Icon(Icons.home),
-                  onTap: (){
-                      //Close the drawer
-                      Navigator.pop(context);
-                       setState(() {
-                         selectedPage = 'HOME';
-                       });
-                  },
-                ),
-
-                ListTile(
-                  title: const Text('About us'),
-                  leading: Icon(Icons.add_moderator_outlined),
-                  onTap: (){
-                      Navigator.pop(context);
-                       setState(() {
-                         selectedPage = 'ABOUT';
-                       });
-                  },
-                )
-            ],
+        body: Center(
+          child: Container(
+            padding: EdgeInsets.all(16.0),
+            child: _loading?LinearProgressIndicator():Text('Press button for loading',
+            style: TextStyle(fontSize: 25),
+            ),
           ),
         ),
-        body: Center(
-          child: (selectedPage == 'HOME')?HomeWidget1():AboutWidget1(),
-        ),
+        floatingActionButton: FloatingActionButton(  
+        onPressed: () {  
+          setState(() {  
+            _loading = !_loading;  
+          });  
+        },  
+        tooltip: 'Download',  
+        child: Icon(Icons.cloud_download),  
+      ),  
+
+        
       );
 
 
