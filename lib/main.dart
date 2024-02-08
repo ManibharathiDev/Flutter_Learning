@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:table_calendar/table_calendar.dart';  
 
 void main() {
   runApp(MyApp());
@@ -9,197 +11,50 @@ class MyApp extends StatelessWidget{
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Suguna Demo Flutter App',
-      home: HomeState(),
+      home: HomeCalendarPage(),
     );
   }
 
 }
 
-class HomeState extends StatefulWidget{
-  
-    const HomeState({super.key});
-    @override
-    State<HomeState> createState() {
-      return _MyHomeDrawer();
-    }
-}
+class HomeCalendarPage extends StatefulWidget {  
+  @override  
+  _HomeCalendarPageState createState() => _HomeCalendarPageState();  
+}  
 
-class _MyHomeDrawer extends State<HomeState>
-{
 
-  late bool _loading;  
+class _HomeCalendarPageState extends State<HomeCalendarPage>{
+
+  late CalendarController _controller;
 
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
-    _loading = false;
+    _controller = CalendarController();
   }
 
-    @override
+  @override
   Widget build(BuildContext context) {
-
-      return Scaffold(
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.white),
-          title: Text('Navigation Drawer',style:TextStyle(
-            color: Colors.white
-          )),
-          backgroundColor: Colors.blue.shade900,
-        ),
-        body: Center(
-          child: Container(
-            padding: EdgeInsets.all(16.0),
-            child: _loading?LinearProgressIndicator():Text('Press button for loading',
-            style: TextStyle(fontSize: 25),
-            ),
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(  
-        onPressed: () {  
-          setState(() {  
-            _loading = !_loading;  
-          });  
-        },  
-        tooltip: 'Download',  
-        child: Icon(Icons.cloud_download),  
+    // TODO: implement build
+    return Scaffold(
+      appBar: AppBar(  
+        title: Text('Flutter Calendar Example'),  
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TableCalendar(focusedDay: DateTime.utc(2010, 10, 16), firstDay: DateTime.utc(2030, 3, 14), lastDay: DateTime.now())
+          ]),
       ),  
-
-        
-      );
-
-
-    
-  }
-}
-
-class HomeWidget1 extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: Text('This is Widget1 Home Page')),
     );
   }
 
 }
 
-class AboutWidget1 extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-      return Scaffold(
-        body: Center(child: Text('This is About Widget1')),
-      );
-  }
-
-}
 
 
-class Home extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
 
-      return Scaffold(
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.white),
-          title: Text('Navigation Drawer',style:TextStyle(
-            color: Colors.white
-          )),
-          backgroundColor: Colors.blue.shade900,
-        ),
 
-        drawer: Drawer(
-          child: ListView(
-            children: [
-
-              // User Accounts Header
-              const UserAccountsDrawerHeader(accountName: Text('Manibharathi'), 
-              accountEmail: Text('manibharathir@sugunafoods.com'),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Text("M",
-                style: TextStyle(fontSize: 40.0),
-                ),
-              ),
-              ),
-              // Normal Header
-              // const DrawerHeader(
-              //   decoration: BoxDecoration(
-              //     color: Colors.lightBlueAccent
-              //   ),
-              //   child: Text('SFPL')
-
-              //   ),
-                ListTile(
-                  title: const Text('Home'),
-                  leading: Icon(Icons.home),
-                  onTap: (){
-                      //Close the drawer
-                      Navigator.pop(context);
-                       Navigator.push(context, 
-                            MaterialPageRoute(builder: (context) => MyHome())
-                            );
-                  },
-                ),
-
-                ListTile(
-                  title: const Text('About us'),
-                  leading: Icon(Icons.add_moderator_outlined),
-                  onTap: (){
-                      Navigator.pop(context);
-                       Navigator.push(context, 
-                            MaterialPageRoute(builder: (context) => About())
-                            );
-                  },
-                )
-            ],
-          ),
-        ),
-      );
-    
-  }
-
-}
-
-class MyHome extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(color: Colors.white),
-          title: Text('Home',style:TextStyle(
-            color: Colors.white
-          )),
-          backgroundColor: Colors.blue.shade900,
-        ),
-      body: Center(
-        child:Text('This is Home Page', style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold
-        ))
-      ),
-    );
-  }
-
-}
-
-class About extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(color: Colors.white),
-          title: Text('About',style:TextStyle(
-            color: Colors.white
-          )),
-          backgroundColor: Colors.blue.shade900,
-        ),
-      body: Center(
-        child:Text('This is About Page', style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold
-        ))
-      ),
-    );
-  }
-
-}
 
